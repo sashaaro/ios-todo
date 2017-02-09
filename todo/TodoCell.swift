@@ -11,5 +11,5 @@ import UIKit
 
 public class TodoCell: UITableViewCell
 {
-    
+    public var todo: Todo?
 }

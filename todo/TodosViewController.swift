@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TodosViewController: UIViewController, UITableViewDelegate {
+class TodosViewController: UITableViewController {
 
     public var projects = [Project]()
     
@@ -18,7 +18,7 @@ class TodosViewController: UIViewController, UITableViewDelegate {
         
         var project = Project();
         var todo = Todo();
-        
+        project.title = "Задача №1"
         project.todos.append(todo)
         self.projects.append(project)
     }
@@ -29,7 +29,7 @@ class TodosViewController: UIViewController, UITableViewDelegate {
     }
 
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.projects[section].todos.count;
         //возвращаем количество задач внутри проекта, который находим, используя section
         
@@ -37,7 +37,7 @@ class TodosViewController: UIViewController, UITableViewDelegate {
     
     
     
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         
         //возвращаем ячейку для заголовка
         
@@ -46,7 +46,7 @@ class TodosViewController: UIViewController, UITableViewDelegate {
         return tableView.dequeueReusableCell(withIdentifier: "header")
     }
     
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         
         //высота cell (непосредственно само todo)
         return 44;
@@ -60,17 +60,31 @@ class TodosViewController: UIViewController, UITableViewDelegate {
         
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         //находим cell, используя Identifier, который установили в storyboard, и возвращаем cell для текущего индекса
         
         //пока не нужно устанавливать текст, поскольку мы будем добавлять кастомный компонент - checkbox, а не UILabel, который установлен в стандартной UITableViewCell по умолчанию
         
-        return TodoCell()
+        // Table view cells are reused and should be dequeued using a cell identifier.
+        let cellIdentifier = "TodoCell"
+        
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as? TodoCell  else {
+            fatalError("The dequeued cell is not an instance of TodoCell.")
+        }
+        
+        // Fetches the appropriate meal for the data source layout.
+        let project = self.projects[indexPath.row]
+        
+        cell.todo = project.todos.first // TODO
+        //cell.photoImageView.image = meal.photo
+        //cell.ratingControl.rating = meal.rating
+        
+        return cell
         
     }
     
-    func numberOfSections(in tableView: UITableView) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int {
         
         //возвращаем количество секций (проектов)
         return self.projects.count;
