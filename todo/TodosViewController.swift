@@ -18,7 +18,23 @@ class TodosViewController: UITableViewController {
         
         var project = Project();
         var todo = Todo();
-        project.title = "Задача №1"
+        project.title = "Проект №1"
+        todo.text = "Задача 1"
+        project.todos.append(todo)
+        self.projects.append(project)
+        
+        project = Project()
+        todo = Todo();
+        todo.text = "Задача 1"
+        
+        project.title = "Проект №2"
+        project.todos.append(todo)
+        self.projects.append(project)
+        
+        project = Project()
+        todo = Todo();
+        todo.text = "Задача 1"
+        project.title = "Проект №3"
         project.todos.append(todo)
         self.projects.append(project)
     }
@@ -77,6 +93,7 @@ class TodosViewController: UITableViewController {
         let project = self.projects[indexPath.row]
         
         cell.todo = project.todos.first // TODO
+        cell.textLabel?.text = cell.todo?.text
         //cell.photoImageView.image = meal.photo
         //cell.ratingControl.rating = meal.rating
         

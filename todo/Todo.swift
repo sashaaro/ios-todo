@@ -9,7 +9,7 @@
 import Foundation
 
 public class Todo {
-    var id: Int?;
-    var text: String?;
-    var project: Project?;
+    var id: Int?
+    var text: String?
+    var project: Project?
 }
