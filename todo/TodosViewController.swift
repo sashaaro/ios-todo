@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class TodosViewController: UIViewController, UITableViewDelegate {
 
     public var projects = [Project]()
     
