@@ -13,7 +13,10 @@ class AddTodoViewController: UIViewController, UIPickerViewDataSource, UIPickerV
     @IBOutlet weak var todoText: UITextField!
     @IBOutlet weak var projectsPicker: UIPickerView!
 
-    var dataObject : [String] = ["Hello","Bye","Good Night"];
+    let repository: Repository = Repository();
+    var projects = [Project]()
+    
+    var selectedProject: Project?;
 
     
     override func viewDidLoad() {
@@ -21,10 +24,19 @@ class AddTodoViewController: UIViewController, UIPickerViewDataSource, UIPickerV
         
         self.projectsPicker.dataSource = self;
         self.projectsPicker.delegate = self;
+        
+        self.repository.findProjects(callback: { projects in
+            self.projects = projects
+            self.selectedProject = self.projects.first
+            self.projectsPicker.reloadAllComponents()
+        })
     }
     
     @IBAction func touchUp(_ sender: Any) {
-        print(self.todoText.text ?? "empty")
+        let todo = Todo();
+        todo.text = self.todoText.text
+        todo.project = Project()
+        print(self.selectedProject ?? "")
         print("touch")
     }
     
@@ -35,15 +47,16 @@ class AddTodoViewController: UIViewController, UIPickerViewDataSource, UIPickerV
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int
     {
-        return self.dataObject.count;
+        return self.projects.count;
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String?
     {
-        return self.dataObject[row];
+        return self.projects[row].title;
     }
     
-    /*func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int)
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int)
     {
-    }*/
+        self.selectedProject = self.projects[row]
+    }
 }

@@ -10,9 +10,10 @@ import UIKit
 import Alamofire
 
 class TodosViewController: UITableViewController {
-    let API_URL = "https://oblakotodo.herokuapp.com/api";
+    let repository: Repository = Repository();
     
     public var projects = [Project]()
+
     
     @IBOutlet var todoTableView: UITableView!
     
@@ -20,53 +21,10 @@ class TodosViewController: UITableViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        Alamofire.request(self.API_URL + "/projects").responseJSON { response in
-            if let JSON = response.result.value {
-                let list = JSON as! [Dictionary<String, AnyObject>]
-                for projectData in list {
-                    let project = Project()
-                    project.id = projectData["id"] as? Int
-                    project.title = projectData["title"] as? String
-                    
-                    for todoData in projectData["todos"] as! [Dictionary<String, AnyObject>] {
-                        let todo = Todo()
-                        todo.id = todoData["id"] as? Int
-                        todo.text = todoData["text"] as? String
-                        todo.isCopleted = (todoData["isCompleted"] as? Bool)!
-                        
-                        project.todos.append(todo)
-                    }
-
-                    
-                    self.projects.append(project)
-                }
-                
-                
-                /*var project = Project();
-                var todo = Todo();
-                project.title = "Проект №1"
-                todo.text = "P 1 Задача 1"
-                project.todos.append(todo)
-                self.projects.append(project)
-                
-                project = Project()
-                todo = Todo();
-                todo.text = "P 2 Задача 1"
-                
-                project.title = "Проект №2"
-                project.todos.append(todo)
-                self.projects.append(project)
-                
-                project = Project()
-                todo = Todo();
-                todo.text = "P 3 Задача 1"
-                project.title = "Проект №3"
-                project.todos.append(todo)
-                self.projects.append(project)*/
-                
-                self.todoTableView.reloadData()
-            }
-        }
+        self.repository.findProjects(callback: { projects in
+            self.projects = projects
+            self.todoTableView.reloadData()
+        })
     }
 
     override func didReceiveMemoryWarning() {
