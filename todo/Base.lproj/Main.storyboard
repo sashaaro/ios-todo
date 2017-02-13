@@ -34,7 +34,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
-                                    <color key="backgroundColor" red="0.80000001190000003" green="0.80000001190000003" blue="0.80000001190000003" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="backgroundColor" red="0.2274509804" green="0.68627450980000004" blue="0.85490196080000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="TodoCell" id="hNy-9w-4QK" customClass="TodoCell" customModule="todo" customModuleProvider="target">
@@ -50,6 +50,17 @@
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <view contentMode="scaleToFill" fixedFrame="YES" restorationIdentifier="competedCheckbox" translatesAutoresizingMaskIntoConstraints="NO" id="okK-WR-5t3" customClass="M13Checkbox" customModule="M13Checkbox">
+                                            <rect key="frame" x="8" y="6" width="33" height="33"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="_IBBoxType" value="square"/>
+                                            </userDefinedRuntimeAttributes>
+                                            <connections>
+                                                <action selector="triggerCheck:" destination="W21-iy-aBI" eventType="valueChanged" id="f4k-hM-WMv"/>
+                                            </connections>
+                                        </view>
                                     </subviews>
                                     <constraints>
                                         <constraint firstAttribute="trailingMargin" secondItem="Nfl-oD-2K0" secondAttribute="trailing" constant="159" id="1KY-3f-R8G"/>
@@ -58,6 +69,9 @@
                                         <constraint firstItem="Nfl-oD-2K0" firstAttribute="leading" secondItem="8Js-Sz-wp4" secondAttribute="leadingMargin" constant="158" id="kx7-z9-dWH"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="checkBox" destination="okK-WR-5t3" id="Uop-Is-cBG"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -78,7 +92,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BSy-DY-TNw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="407" y="-611"/>
+            <point key="canvasLocation" x="405.60000000000002" y="-611.24437781109452"/>
         </scene>
         <!--Add Todo View Controller-->
         <scene sceneID="tne-uA-DX6">

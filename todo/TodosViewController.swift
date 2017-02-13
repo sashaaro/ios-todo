@@ -8,6 +8,7 @@
 
 import UIKit
 import Alamofire
+import M13Checkbox
 
 class TodosViewController: UITableViewController {
     let repository: Repository = Repository();
@@ -36,6 +37,11 @@ class TodosViewController: UITableViewController {
         })
     }
     
+    @IBAction func triggerCheck(_ sender: M13Checkbox) {
+        let isCompleted = sender.checkState.rawValue == "Checked"
+        print(isCompleted)
+    }
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.projects[section].todos.count;
         //возвращаем количество задач внутри проекта, который находим, используя section
@@ -55,24 +61,20 @@ class TodosViewController: UITableViewController {
                 fatalError("not project cell")
         }
         
-        print(cell)
-        
         cell.textLabel?.text = self.projects[section].title
         
         return cell
     }
     
+    //высота cell (непосредственно само todo)
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        
-        //высота cell (непосредственно само todo)
-        return 44;
+        return 40;
         
     }
     
+    //высота заголовка (название проекта)
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        
-        //высота заголовка (название проекта)
-        return 44;
+        return 40;
         
     }
     
@@ -92,10 +94,14 @@ class TodosViewController: UITableViewController {
         // Fetches the appropriate meal for the data source layout.
         let project = self.projects[indexPath.section]
         
-        cell.todo = project.todos[indexPath.row] // TODO
+        cell.todo = project.todos[indexPath.row] // TODO maybe remove?!
         cell.textLabel?.text = cell.todo?.text
-        //cell.photoImageView.image = meal.photo
-        //cell.ratingControl.rating = meal.rating
+        
+        if (cell.todo?.isCopleted == true) {
+            cell.checkBox.checkState = M13Checkbox.CheckState(rawValue: "Checked")!
+        } else {
+            cell.checkBox.checkState = M13Checkbox.CheckState(rawValue: "Unchecked")!
+        }
         
         return cell
         

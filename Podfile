@@ -8,6 +8,7 @@ target 'todo' do
   # Pods for todo
 
   pod 'Alamofire', '~> 4.3'
+  pod 'M13Checkbox'
 
   target 'todoTests' do
     inherit! :search_paths

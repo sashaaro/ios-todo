@@ -1,12 +1,15 @@
 PODS:
   - Alamofire (4.3.0)
+  - M13Checkbox (3.1.3)
 
 DEPENDENCIES:
   - Alamofire (~> 4.3)
+  - M13Checkbox
 
 SPEC CHECKSUMS:
   Alamofire: 856a113053a7bc9cbe5d6367a555d773fc5cfef7
+  M13Checkbox: c132a7e0eb964731855eff67b883a0b21b7c0977
 
-PODFILE CHECKSUM: 994cea41a5be6fd03a4e23f8f41d0ac2e3394762
+PODFILE CHECKSUM: 0ae303f1a78bbef38e9c81c1b9086bc8ca62a6c7
 
 COCOAPODS: 1.2.0
