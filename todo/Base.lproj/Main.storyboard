@@ -19,8 +19,26 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="TodoCell" id="hNy-9w-4QK" customClass="TodoCell" customModule="todo" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ProjectCell" id="zkV-UV-GaG" customClass="ProjectCell" customModule="todo" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="zkV-UV-GaG" id="kJW-KQ-2ez">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CXk-OW-FHc">
+                                            <rect key="frame" x="166" y="11" width="42" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <color key="backgroundColor" red="0.80000001190000003" green="0.80000001190000003" blue="0.80000001190000003" alpha="1" colorSpace="calibratedRGB"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="TodoCell" id="hNy-9w-4QK" customClass="TodoCell" customModule="todo" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="72" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="hNy-9w-4QK" id="8Js-Sz-wp4">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
@@ -47,56 +65,60 @@
                             <outlet property="delegate" destination="W21-iy-aBI" id="kvC-Xr-hRz"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Задачи" id="apC-HB-TlI"/>
+                    <navigationItem key="navigationItem" title="Задачи" id="apC-HB-TlI">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="8Xi-XA-PLd">
+                            <connections>
+                                <segue destination="WwT-nf-hhn" kind="show" id="nCL-0g-VG3"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BSy-DY-TNw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="476" y="-611.24437781109452"/>
+            <point key="canvasLocation" x="407" y="-611"/>
         </scene>
-        <!--Root View Controller-->
-        <scene sceneID="nNz-3q-UxE">
+        <!--Add Todo View Controller-->
+        <scene sceneID="tne-uA-DX6">
             <objects>
-                <tableViewController id="th6-KI-855" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="ixe-38-eU8">
+                <viewController id="WwT-nf-hhn" customClass="AddTodoViewController" customModule="todo" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Ffu-MG-qPD"/>
+                        <viewControllerLayoutGuide type="bottom" id="JFr-jU-95M"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="fhd-in-6J5">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="xk4-Kp-ho2">
-                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="xk4-Kp-ho2" id="lBW-0W-6W8">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="th6-KI-855" id="h88-Ea-bhm"/>
-                            <outlet property="delegate" destination="th6-KI-855" id="yoH-OT-IQc"/>
-                        </connections>
-                    </tableView>
-                    <navigationItem key="navigationItem" title="Root View Controller" id="g0n-FB-bmk"/>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="A9b-5G-95R" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2281" y="-622"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="RZR-P0-0WX">
-            <objects>
-                <navigationController id="rRv-0F-DfB" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="MWP-qe-WEm">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Введите задачу.." borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="h2H-tG-WbS">
+                                <rect key="frame" x="16" y="118" width="343" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NEZ-dK-1do">
+                                <rect key="frame" x="99" y="346" width="176" height="62"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Добавить задачу"/>
+                                <connections>
+                                    <action selector="touchUp:" destination="WwT-nf-hhn" eventType="touchUpInside" id="j16-ov-ig9"/>
+                                </connections>
+                            </button>
+                            <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="IVY-wX-0Ox">
+                                <rect key="frame" x="0.0" y="149" width="375" height="216"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            </pickerView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
+                    </view>
                     <connections>
-                        <segue destination="th6-KI-855" kind="relationship" relationship="rootViewController" id="tjt-Xz-1vQ"/>
+                        <outlet property="projectsPicker" destination="IVY-wX-0Ox" id="KEi-b4-lfH"/>
+                        <outlet property="todoText" destination="h2H-tG-WbS" id="sqb-aZ-nKT"/>
                     </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="sRb-15-UVl" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fbs-i7-JI1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1327" y="-622"/>
+            <point key="canvasLocation" x="1312.8" y="-611.24437781109452"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Zrb-a9-V9G">

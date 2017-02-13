@@ -59,7 +59,18 @@ class TodosViewController: UITableViewController {
         
         //http://stackoverflow.com/questions/31693901/design-uitableviews-section-header-in-interface-builder
         
-        return tableView.dequeueReusableCell(withIdentifier: "header")
+        // return tableView.dequeueReusableCell(withIdentifier: "header")
+        
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "ProjectCell")
+            as? ProjectCell else {
+                fatalError("not project cell")
+        }
+        
+        print(cell)
+        
+        cell.textLabel?.text = "33"
+        
+        return cell
     }
     
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
