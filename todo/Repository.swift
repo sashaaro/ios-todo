@@ -38,9 +38,44 @@ class Repository: NSObject {
                 }
                 callback(projects)
             } else {
-                // TODO
+                // TODO Repository Exception
+                fatalError("Request project fail")
             }
         }
+    }
     
+    public func persistTodoStatus (todo: Todo) {
+        let parameters: Parameters = [
+            "id": todo.id,
+            "isCompeted": todo.isCopleted
+        ]
+        Alamofire.request(self.API_URL + "/todo_change_status", method: .post, parameters: parameters).responseJSON { response in
+        }
+    }
+    
+    public func persistTodo(todo: Todo) {
+        if (todo.id != nil) {
+            fatalError("cant perist exists todo")
+        }
+        /*if (todo.project == nil) {
+            fatalError("")
+        }*/
+        
+        let parameters: Parameters = [
+            "text": todo.text,
+            "project_id": todo.project!.id
+        ]
+        
+        Alamofire.request(self.API_URL + "/create_todo", method: .put, parameters: parameters).responseJSON { response in
+            if (response.response?.statusCode == 200) {
+                // TODO success callback
+            } else {
+                // TODO fetch errors 
+                // TODO fail callback
+                if let JSON = response.result.value {
+                    print(JSON)
+                }
+            }
+        }
     }
 }

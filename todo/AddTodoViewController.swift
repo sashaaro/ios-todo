@@ -30,14 +30,17 @@ class AddTodoViewController: UIViewController, UIPickerViewDataSource, UIPickerV
             self.selectedProject = self.projects.first
             self.projectsPicker.reloadAllComponents()
         })
+        
+        self.todoText.placeholder = "Введите задачу.."
     }
     
     @IBAction func touchUp(_ sender: Any) {
-        let todo = Todo();
-        todo.text = self.todoText.text
-        todo.project = Project()
-        print(self.selectedProject ?? "")
-        print("touch")
+        let todo = Todo()
+        todo.text = self.todoText.text!
+        todo.project = self.selectedProject
+        repository.persistTodo(todo: todo)
+        
+        self.navigationController?.popToRootViewController(animated: true)
     }
     
     func numberOfComponents(in: UIPickerView) -> Int

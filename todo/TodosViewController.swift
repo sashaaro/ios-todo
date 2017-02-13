@@ -14,32 +14,33 @@ class TodosViewController: UITableViewController {
     
     public var projects = [Project]()
 
-    
     @IBOutlet var todoTableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
+        self.reloadData()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+                
+        self.reloadData()
+    }
+    
+    private func reloadData() {
         self.repository.findProjects(callback: { projects in
             self.projects = projects
             self.todoTableView.reloadData()
         })
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.projects[section].todos.count;
         //возвращаем количество задач внутри проекта, который находим, используя section
         
     }
-    
-    
     
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         
