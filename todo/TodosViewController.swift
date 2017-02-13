@@ -7,36 +7,66 @@
 //
 
 import UIKit
+import Alamofire
 
 class TodosViewController: UITableViewController {
-
+    let API_URL = "https://oblakotodo.herokuapp.com/api";
+    
     public var projects = [Project]()
+    
+    @IBOutlet var todoTableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        var project = Project();
-        var todo = Todo();
-        project.title = "Проект №1"
-        todo.text = "Задача 1"
-        project.todos.append(todo)
-        self.projects.append(project)
-        
-        project = Project()
-        todo = Todo();
-        todo.text = "Задача 1"
-        
-        project.title = "Проект №2"
-        project.todos.append(todo)
-        self.projects.append(project)
-        
-        project = Project()
-        todo = Todo();
-        todo.text = "Задача 1"
-        project.title = "Проект №3"
-        project.todos.append(todo)
-        self.projects.append(project)
+        Alamofire.request(self.API_URL + "/projects").responseJSON { response in
+            if let JSON = response.result.value {
+                let list = JSON as! [Dictionary<String, AnyObject>]
+                for projectData in list {
+                    let project = Project()
+                    project.id = projectData["id"] as? Int
+                    project.title = projectData["title"] as? String
+                    
+                    for todoData in projectData["todos"] as! [Dictionary<String, AnyObject>] {
+                        let todo = Todo()
+                        todo.id = todoData["id"] as? Int
+                        todo.text = todoData["text"] as? String
+                        todo.isCopleted = (todoData["isCompleted"] as? Bool)!
+                        
+                        project.todos.append(todo)
+                    }
+
+                    
+                    self.projects.append(project)
+                }
+                
+                
+                /*var project = Project();
+                var todo = Todo();
+                project.title = "Проект №1"
+                todo.text = "P 1 Задача 1"
+                project.todos.append(todo)
+                self.projects.append(project)
+                
+                project = Project()
+                todo = Todo();
+                todo.text = "P 2 Задача 1"
+                
+                project.title = "Проект №2"
+                project.todos.append(todo)
+                self.projects.append(project)
+                
+                project = Project()
+                todo = Todo();
+                todo.text = "P 3 Задача 1"
+                project.title = "Проект №3"
+                project.todos.append(todo)
+                self.projects.append(project)*/
+                
+                self.todoTableView.reloadData()
+            }
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -68,7 +98,7 @@ class TodosViewController: UITableViewController {
         
         print(cell)
         
-        cell.textLabel?.text = "33"
+        cell.textLabel?.text = self.projects[section].title
         
         return cell
     }
@@ -101,9 +131,9 @@ class TodosViewController: UITableViewController {
         }
         
         // Fetches the appropriate meal for the data source layout.
-        let project = self.projects[indexPath.row]
+        let project = self.projects[indexPath.section]
         
-        cell.todo = project.todos.first // TODO
+        cell.todo = project.todos[indexPath.row] // TODO
         cell.textLabel?.text = cell.todo?.text
         //cell.photoImageView.image = meal.photo
         //cell.ratingControl.rating = meal.rating

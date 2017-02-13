@@ -9,7 +9,8 @@
 import Foundation
 
 public class Todo {
-    var id: Int?
-    var text: String?
-    var project: Project?
+    public var id: Int?
+    public var text: String?
+    public var project: Project?
+    public var isCopleted = false;
 }
