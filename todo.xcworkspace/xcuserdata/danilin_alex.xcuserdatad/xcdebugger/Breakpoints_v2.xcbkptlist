@@ -99,5 +99,83 @@
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "todo/TodoCell.swift"
+            timestampString = "508759990.160888"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "16"
+            endingLineNumber = "16"
+            landmarkName = "TodoCell"
+            landmarkType = "3">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "todo.TodoCell.todo.getter : Swift.Optional&lt;todo.Todo&gt;"
+                  moduleName = "todo"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/danilin_alex/Desktop/todo/todo/TodoCell.swift"
+                  timestampString = "508759191.643067"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "17"
+                  endingLineNumber = "17"
+                  offsetFromSymbolStart = "35">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "todo.TodoCell.todo.setter : Swift.Optional&lt;todo.Todo&gt;"
+                  moduleName = "todo"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/danilin_alex/Desktop/todo/todo/TodoCell.swift"
+                  timestampString = "508759191.645669"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "17"
+                  endingLineNumber = "17"
+                  offsetFromSymbolStart = "61">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "todo.TodoCell.init (style : __C.UITableViewCellStyle, reuseIdentifier : Swift.Optional&lt;Swift.String&gt;) -&gt; todo.TodoCell"
+                  moduleName = "todo"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/danilin_alex/Desktop/todo/todo/TodoCell.swift"
+                  timestampString = "508759191.648021"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "17"
+                  endingLineNumber = "17"
+                  offsetFromSymbolStart = "146">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "todo.TodoCell.init (coder : __ObjC.NSCoder) -&gt; Swift.Optional&lt;todo.TodoCell&gt;"
+                  moduleName = "todo"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/danilin_alex/Desktop/todo/todo/TodoCell.swift"
+                  timestampString = "508759191.650691"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "17"
+                  endingLineNumber = "17"
+                  offsetFromSymbolStart = "85">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
    </Breakpoints>
 </Bucket>

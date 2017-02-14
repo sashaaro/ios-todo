@@ -6,7 +6,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -40,16 +39,10 @@
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="TodoCell" id="hNy-9w-4QK" customClass="TodoCell" customModule="todo" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="72" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" tableViewCell="hNy-9w-4QK" id="8Js-Sz-wp4">
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="hNy-9w-4QK" id="8Js-Sz-wp4">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nfl-oD-2K0">
-                                            <rect key="frame" x="166" y="11" width="46" height="21"/>
-                                            <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="17"/>
-                                            <nil key="textColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
                                         <view contentMode="scaleToFill" fixedFrame="YES" restorationIdentifier="competedCheckbox" translatesAutoresizingMaskIntoConstraints="NO" id="okK-WR-5t3" customClass="M13Checkbox" customModule="M13Checkbox">
                                             <rect key="frame" x="8" y="6" width="33" height="33"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -58,16 +51,18 @@
                                                 <action selector="toggleCheckbox:" destination="hNy-9w-4QK" eventType="valueChanged" id="uAw-H5-IuZ"/>
                                             </connections>
                                         </view>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A2Q-y7-OMe">
+                                            <rect key="frame" x="49" y="12" width="263" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                     </subviews>
-                                    <constraints>
-                                        <constraint firstAttribute="trailingMargin" secondItem="Nfl-oD-2K0" secondAttribute="trailing" constant="159" id="1KY-3f-R8G"/>
-                                        <constraint firstItem="Nfl-oD-2K0" firstAttribute="top" secondItem="8Js-Sz-wp4" secondAttribute="topMargin" constant="3" id="CsU-GD-9km"/>
-                                        <constraint firstAttribute="bottomMargin" secondItem="Nfl-oD-2K0" secondAttribute="bottom" constant="3" id="Kj8-IY-SmR"/>
-                                        <constraint firstItem="Nfl-oD-2K0" firstAttribute="leading" secondItem="8Js-Sz-wp4" secondAttribute="leadingMargin" constant="158" id="kx7-z9-dWH"/>
-                                    </constraints>
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="checkBox" destination="okK-WR-5t3" id="Uop-Is-cBG"/>
+                                    <outlet property="label" destination="A2Q-y7-OMe" id="S1q-O3-yb9"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -89,7 +84,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BSy-DY-TNw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="405.60000000000002" y="-611.24437781109452"/>
+            <point key="canvasLocation" x="405" y="-611.61971830985919"/>
         </scene>
         <!--Добавить задачу-->
         <scene sceneID="tne-uA-DX6">

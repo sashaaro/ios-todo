@@ -13,9 +13,11 @@ import M13Checkbox
 public class TodoCell: UITableViewCell
 {
     @IBOutlet public weak var checkBox: M13Checkbox!
+    @IBOutlet public weak var label: UILabel!
     
     public var todo: Todo? // TODO not use now. maybe remove
     private let repository: Repository = Repository(); // TODO remove. will be Injected?!
+
     
     @IBAction func toggleCheckbox(_ sender: M13Checkbox) {
         self.todo?.isCompleted = sender.checkState.rawValue == "Checked"
@@ -24,7 +26,7 @@ public class TodoCell: UITableViewCell
     
     // TODO use that method
     public func beforeRender() {
-        self.textLabel?.text = self.todo?.text
+        //self.textLabel?.text = self.todo?.text
 
         if (self.todo?.isCompleted == true) {
             self.checkBox.checkState = M13Checkbox.CheckState(rawValue: "Checked")!

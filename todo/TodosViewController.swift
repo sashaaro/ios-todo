@@ -20,7 +20,7 @@ class TodosViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        
+                
         self.reloadData()
     }
     
@@ -90,7 +90,9 @@ class TodosViewController: UITableViewController {
         let project = self.projects[indexPath.section]
         
         cell.todo = project.todos[indexPath.row] // TODO maybe remove?!
-        cell.textLabel?.text = cell.todo?.text
+        //cell.textLabel?.text = cell.todo?.text
+        cell.label.text = cell.todo?.text
+        cell.selectionStyle =  UITableViewCellSelectionStyle.none
         
         if (cell.todo?.isCompleted == true) {
             cell.checkBox.checkState = M13Checkbox.CheckState(rawValue: "Checked")!
