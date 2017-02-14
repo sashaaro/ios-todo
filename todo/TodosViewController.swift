@@ -37,11 +37,6 @@ class TodosViewController: UITableViewController {
         })
     }
     
-    @IBAction func triggerCheck(_ sender: M13Checkbox) {
-        let isCompleted = sender.checkState.rawValue == "Checked"
-        print(isCompleted)
-    }
-    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.projects[section].todos.count;
         //возвращаем количество задач внутри проекта, который находим, используя section
@@ -97,11 +92,12 @@ class TodosViewController: UITableViewController {
         cell.todo = project.todos[indexPath.row] // TODO maybe remove?!
         cell.textLabel?.text = cell.todo?.text
         
-        if (cell.todo?.isCopleted == true) {
+        if (cell.todo?.isCompleted == true) {
             cell.checkBox.checkState = M13Checkbox.CheckState(rawValue: "Checked")!
         } else {
             cell.checkBox.checkState = M13Checkbox.CheckState(rawValue: "Unchecked")!
         }
+        
         
         return cell
         

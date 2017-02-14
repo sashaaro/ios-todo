@@ -12,5 +12,5 @@ public class Todo {
     public var id: Int?
     public var text: String?
     public var project: Project?
-    public var isCopleted = false;
+    public var isCompleted: Bool = false;
 }
