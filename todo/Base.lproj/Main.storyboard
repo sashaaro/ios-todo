@@ -13,7 +13,7 @@
         <scene sceneID="UAQ-jG-J81">
             <objects>
                 <tableViewController id="W21-iy-aBI" customClass="TodosViewController" customModule="todo" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="5Lx-fU-Ylb">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="5Lx-fU-Ylb">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -78,11 +78,12 @@
                     <navigationItem key="navigationItem" title="Задачи" id="apC-HB-TlI">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="8Xi-XA-PLd">
                             <connections>
-                                <segue destination="WwT-nf-hhn" kind="show" id="nCL-0g-VG3"/>
+                                <action selector="clickNewTodoButton:" destination="W21-iy-aBI" id="oBr-Ss-SFB"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="newTodoButton" destination="8Xi-XA-PLd" id="Vgm-Q6-Fcg"/>
                         <outlet property="todoTableView" destination="5Lx-fU-Ylb" id="bYB-uY-yRz"/>
                     </connections>
                 </tableViewController>
@@ -90,10 +91,10 @@
             </objects>
             <point key="canvasLocation" x="405" y="-611.61971830985919"/>
         </scene>
-        <!--Добавить задачу-->
+        <!--Новая задача-->
         <scene sceneID="tne-uA-DX6">
             <objects>
-                <viewController id="WwT-nf-hhn" customClass="AddTodoViewController" customModule="todo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController restorationIdentifier="AddTodoViewController" storyboardIdentifier="AddTodoViewController" id="WwT-nf-hhn" customClass="AddTodoViewController" customModule="todo" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Ffu-MG-qPD"/>
                         <viewControllerLayoutGuide type="bottom" id="JFr-jU-95M"/>
@@ -113,10 +114,35 @@
                                 <rect key="frame" x="0.0" y="117" width="320" height="153"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                             </pickerView>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" restorationIdentifier="todoFormTable" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="4Yk-p6-ZhU">
+                                <rect key="frame" x="0.0" y="262" width="320" height="306"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ProjectSelectedCell" id="EAK-Kx-Uc1" customClass="ProjectSelectedCell" customModule="todo" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="EAK-Kx-Uc1" id="aa4-3y-772">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="done" highlightedImage="ProjectSelectedCell" translatesAutoresizingMaskIntoConstraints="NO" id="zvB-hZ-o6l">
+                                                    <rect key="frame" x="280" y="11" width="22" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                </imageView>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="doneImageView" destination="zvB-hZ-o6l" id="7gB-mo-4Ra"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Добавить задачу" id="LsM-Nh-HE6">
+                    <navigationItem key="navigationItem" title="Новая задача" id="LsM-Nh-HE6">
                         <barButtonItem key="rightBarButtonItem" image="done" id="mLw-Sa-rgz">
                             <inset key="imageInsets" minX="27" minY="15" maxX="4" maxY="13"/>
                             <connections>
@@ -126,6 +152,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="projectsPicker" destination="IVY-wX-0Ox" id="KEi-b4-lfH"/>
+                        <outlet property="todoFormView" destination="4Yk-p6-ZhU" id="s91-lb-Kh9"/>
                         <outlet property="todoText" destination="h2H-tG-WbS" id="sqb-aZ-nKT"/>
                     </connections>
                 </viewController>
@@ -152,6 +179,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="ProjectSelectedCell" width="16" height="16"/>
         <image name="done" width="59" height="46"/>
     </resources>
 </document>

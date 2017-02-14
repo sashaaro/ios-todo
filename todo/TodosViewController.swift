@@ -14,6 +14,7 @@ class TodosViewController: UITableViewController {
     let repository: Repository = Repository();
     
     public var projects = [Project]()
+    @IBOutlet weak var newTodoButton: UIBarButtonItem!
 
     @IBOutlet var todoTableView: UITableView!
     
@@ -26,13 +27,21 @@ class TodosViewController: UITableViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-                
+        
         self.reloadData()
     }
     
+    @IBAction func clickNewTodoButton(_ sender: Any) {
+        let addTodoViewController = self.storyboard?.instantiateViewController(withIdentifier: "AddTodoViewController") as! AddTodoViewController
+        addTodoViewController.projects = self.projects
+        self.navigationController?.pushViewController(addTodoViewController, animated: true)
+    }
+    
     private func reloadData() {
+        self.newTodoButton.isEnabled = false;
         self.repository.findProjects(callback: { projects in
             self.projects = projects
+            self.newTodoButton.isEnabled = true;
             self.todoTableView.reloadData()
         })
     }
@@ -63,14 +72,12 @@ class TodosViewController: UITableViewController {
     
     //высота cell (непосредственно само todo)
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 40;
-        
+        return 35;
     }
     
     //высота заголовка (название проекта)
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return 40;
-        
+        return 35;
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -100,5 +107,6 @@ class TodosViewController: UITableViewController {
         
         //возвращаем количество секций (проектов)
         return self.projects.count;
-    }}
+    }
+}
 

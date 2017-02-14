@@ -8,11 +8,13 @@
 
 import UIKit
 
-class AddTodoViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate
+class AddTodoViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate, UITableViewDataSource, UITableViewDelegate
 {
+    @IBOutlet weak var image: UIImageView!
+    @IBOutlet weak var todoFormView: UITableView!
     @IBOutlet weak var todoText: UITextField!
     @IBOutlet weak var projectsPicker: UIPickerView!
-
+    
     let repository: Repository = Repository();
     var projects = [Project]()
     
@@ -25,11 +27,12 @@ class AddTodoViewController: UIViewController, UIPickerViewDataSource, UIPickerV
         self.projectsPicker.dataSource = self;
         self.projectsPicker.delegate = self;
         
-        self.repository.findProjects(callback: { projects in
-            self.projects = projects
-            self.selectedProject = self.projects.first
-            self.projectsPicker.reloadAllComponents()
-        })
+        self.todoFormView.dataSource = self;
+        self.todoFormView.delegate = self;
+        
+        if (self.projects.count == 0) {
+            fatalError("There is not projects")
+        }
         
         self.todoText.placeholder = "Введите задачу.."
     }
@@ -38,6 +41,7 @@ class AddTodoViewController: UIViewController, UIPickerViewDataSource, UIPickerV
         let todo = Todo()
         todo.text = self.todoText.text!
         todo.project = self.selectedProject
+        //NotificationCenter.default.post(name: Notification.Name("NotificationIdentifier"), object: nil)
         repository.persistTodo(todo: todo)
         
         self.navigationController?.popToRootViewController(animated: true)
@@ -61,5 +65,56 @@ class AddTodoViewController: UIViewController, UIPickerViewDataSource, UIPickerV
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int)
     {
         self.selectedProject = self.projects[row]
+    }
+    
+    
+    
+    
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return self.projects.count;
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        /*guard let cell = tableView.dequeueReusableCell(withIdentifier: "ProjectCell") // TODO rename HeaderCell
+            as? ProjectCell else {
+                fatalError("not project cell")
+        }*/
+        let cell = UITableViewCell()
+        cell.textLabel?.text = "Категория"
+        
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 35;
+    }
+    
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return 35;
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let selectedCell = tableView.cellForRow(at: indexPath) as! ProjectSelectedCell
+        //print(selectedCell.isSelected)
+        selectedCell.updateViewElements();
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        var cell: ProjectSelectedCell;
+        let cellIdentifier = "ProjectSelectedCell"
+        cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! ProjectSelectedCell
+            
+        // Fetches the appropriate meal for the data source layout.
+        let project = self.projects[indexPath.row]
+        cell.textLabel?.text = project.title
+        cell.updateViewElements()
+        
+        return cell
+    }
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1;
     }
 }
