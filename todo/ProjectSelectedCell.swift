@@ -16,13 +16,11 @@ public class ProjectSelectedCell: UITableViewCell {
     
     public func updateViewElements() {
         //self.selectionStyle =  UITableViewCellSelectionStyle.none // remove selection style
-        
-        //let image = UIImage();
     
         self.doneImageView.image = self.doneImageView.image!.withRenderingMode(.alwaysTemplate)
-        self.doneImageView.tintColor = UIColor.green
+        self.doneImageView.tintColor = UIColor.black
         //self.tintColorDidChange()
-        //self.doneImageView.isHidden = !self.isSelected;
+        self.doneImageView.isHidden = !self.isSelected;
     }
     
 

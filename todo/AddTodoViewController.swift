@@ -8,12 +8,11 @@
 
 import UIKit
 
-class AddTodoViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate, UITableViewDataSource, UITableViewDelegate
+class AddTodoViewController: UIViewController, UITableViewDataSource, UITableViewDelegate
 {
     @IBOutlet weak var image: UIImageView!
     @IBOutlet weak var todoFormView: UITableView!
     @IBOutlet weak var todoText: UITextField!
-    @IBOutlet weak var projectsPicker: UIPickerView!
     
     let repository: Repository = Repository();
     var projects = [Project]()
@@ -23,12 +22,11 @@ class AddTodoViewController: UIViewController, UIPickerViewDataSource, UIPickerV
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        self.projectsPicker.dataSource = self;
-        self.projectsPicker.delegate = self;
-        
+
         self.todoFormView.dataSource = self;
         self.todoFormView.delegate = self;
+        
+        self.todoFormView.isScrollEnabled = false;
         
         if (self.projects.count == 0) {
             fatalError("There is not projects")
@@ -46,30 +44,6 @@ class AddTodoViewController: UIViewController, UIPickerViewDataSource, UIPickerV
         
         self.navigationController?.popToRootViewController(animated: true)
     }
-    
-    func numberOfComponents(in: UIPickerView) -> Int
-    {
-        return 1;
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int
-    {
-        return self.projects.count;
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String?
-    {
-        return self.projects[row].title;
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int)
-    {
-        self.selectedProject = self.projects[row]
-    }
-    
-    
-    
-    
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.projects.count;
