@@ -1,0 +1,9 @@
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "A2Q-y7-OMe"; */
+"A2Q-y7-OMe.text" = "Label";
+
+/* Class = "UINavigationItem"; title = "Новая задача"; ObjectID = "LsM-Nh-HE6"; */
+"LsM-Nh-HE6.title" = "Новая задача";
+
+/* Class = "UINavigationItem"; title = "Задачи"; ObjectID = "apC-HB-TlI"; */
+"apC-HB-TlI.title" = "Задачи";

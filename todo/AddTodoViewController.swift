@@ -76,10 +76,6 @@ class AddTodoViewController: UIViewController, UIPickerViewDataSource, UIPickerV
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        /*guard let cell = tableView.dequeueReusableCell(withIdentifier: "ProjectCell") // TODO rename HeaderCell
-            as? ProjectCell else {
-                fatalError("not project cell")
-        }*/
         let cell = UITableViewCell()
         cell.textLabel?.text = "Категория"
         
@@ -96,7 +92,8 @@ class AddTodoViewController: UIViewController, UIPickerViewDataSource, UIPickerV
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let selectedCell = tableView.cellForRow(at: indexPath) as! ProjectSelectedCell
-        //print(selectedCell.isSelected)
+        self.selectedProject = self.projects[indexPath.row]
+        
         selectedCell.updateViewElements();
     }
     
@@ -110,7 +107,7 @@ class AddTodoViewController: UIViewController, UIPickerViewDataSource, UIPickerV
         let project = self.projects[indexPath.row]
         cell.textLabel?.text = project.title
         cell.updateViewElements()
-        
+   
         return cell
     }
     

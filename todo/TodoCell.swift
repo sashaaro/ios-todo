@@ -33,6 +33,8 @@ public class TodoCell: UITableViewCell
     }
     
     public func updateViewCheckbox() {
+        self.checkBox.stateChangeAnimation = .fill
+        
         if (self.todo?.isCompleted == true) {
             self.checkBox.checkState = M13Checkbox.CheckState(rawValue: "Checked")!
         } else {
