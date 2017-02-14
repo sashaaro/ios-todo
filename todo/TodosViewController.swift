@@ -39,11 +39,14 @@ class TodosViewController: UITableViewController {
     
     private func reloadData() {
         self.newTodoButton.isEnabled = false;
+        
         self.repository.findProjects(callback: { projects in
             self.projects = projects
             self.newTodoButton.isEnabled = true;
             self.todoTableView.reloadData()
         })
+        
+        self.todoTableView.separatorColor = UIColor.clear
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -65,7 +68,7 @@ class TodosViewController: UITableViewController {
                 fatalError("not project cell")
         }
         
-        cell.textLabel?.text = self.projects[section].title
+        cell.textLabel?.text = self.projects[section].title?.uppercased()
         
         return cell
     }

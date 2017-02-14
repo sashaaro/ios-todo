@@ -44,6 +44,7 @@ public class TodoCell: UITableViewCell
     
     public func updateViewLabel() {
         //self.textLabel?.text = self.todo?.text
+        //self.label.font = UIFont(name: "OpenSans-Regular", size: 10)
         
         if (self.todo?.isCompleted == true) {
             let attributeString: NSMutableAttributedString =  NSMutableAttributedString(string: (todo?.text)!)
