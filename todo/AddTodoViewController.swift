@@ -25,6 +25,7 @@ class AddTodoViewController: UIViewController, UIPickerViewDataSource, UIPickerV
         self.projectsPicker.dataSource = self;
         self.projectsPicker.delegate = self;
         
+        
         self.repository.findProjects(callback: { projects in
             self.projects = projects
             self.selectedProject = self.projects.first
@@ -34,7 +35,7 @@ class AddTodoViewController: UIViewController, UIPickerViewDataSource, UIPickerV
         self.todoText.placeholder = "Введите задачу.."
     }
     
-    @IBAction func touchUp(_ sender: Any) {
+    @IBAction func add(_ sender: Any) {
         let todo = Todo()
         todo.text = self.todoText.text!
         todo.project = self.selectedProject
