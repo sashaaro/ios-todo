@@ -46,7 +46,7 @@ class Repository: NSObject {
     
     public func persistTodoStatus (todo: Todo) {
         let parameters: Parameters = [
-            "id": todo.id,
+            "id": todo.id!,
             "isCompleted": todo.isCompleted
         ]
         Alamofire.request(self.API_URL + "/todo_change_status", method: .post, parameters: parameters).responseJSON { response in
@@ -63,8 +63,8 @@ class Repository: NSObject {
         }*/
         
         let parameters: Parameters = [
-            "text": todo.text,
-            "project_id": todo.project!.id
+            "text": todo.text!,
+            "project_id": todo.project!.id!
         ]
         
         Alamofire.request(self.API_URL + "/create_todo", method: .put, parameters: parameters).responseJSON { response in

@@ -89,17 +89,8 @@ class TodosViewController: UITableViewController {
         // Fetches the appropriate meal for the data source layout.
         let project = self.projects[indexPath.section]
         
-        cell.todo = project.todos[indexPath.row] // TODO maybe remove?!
-        //cell.textLabel?.text = cell.todo?.text
-        cell.label.text = cell.todo?.text
-        cell.selectionStyle =  UITableViewCellSelectionStyle.none
-        
-        if (cell.todo?.isCompleted == true) {
-            cell.checkBox.checkState = M13Checkbox.CheckState(rawValue: "Checked")!
-        } else {
-            cell.checkBox.checkState = M13Checkbox.CheckState(rawValue: "Unchecked")!
-        }
-        
+        cell.todo = project.todos[indexPath.row]
+        cell.updateViewElements()
         
         return cell
         

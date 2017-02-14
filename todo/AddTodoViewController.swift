@@ -25,7 +25,6 @@ class AddTodoViewController: UIViewController, UIPickerViewDataSource, UIPickerV
         self.projectsPicker.dataSource = self;
         self.projectsPicker.delegate = self;
         
-        
         self.repository.findProjects(callback: { projects in
             self.projects = projects
             self.selectedProject = self.projects.first
